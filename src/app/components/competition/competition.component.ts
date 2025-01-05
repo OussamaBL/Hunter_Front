@@ -47,6 +47,7 @@ export interface PageableResponse {
   selector: 'app-competition',
   templateUrl: './competition.component.html',
   styleUrls: ['./competition.component.css'],
+  standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [RouterModule, CommonModule]
 })
