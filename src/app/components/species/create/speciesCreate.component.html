@@ -1,0 +1,134 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <h1 class="p-5 text-lg font-semibold text-center text-gray-900 bg-white">
+    create new species
+  </h1>
+
+  <form [formGroup]="speciesForm" (ngSubmit)="onSubmit()" class="w-2/3 mx-auto">
+    <div class="relative mb-6">
+    <div class="relative text-gray-500 focus-within:text-gray-900">
+      <input
+        type="text"
+        formControlName="name"
+        class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+        placeholder="Enter name"
+      />
+      @if (name?.invalid && (name?.dirty ||
+        name?.touched)) { @if (name?.errors?.['required']) {
+        <p class="mt-1 text-sm text-red-600">name is required</p>
+      }  }
+    </div>
+    </div>
+
+    <div class="relative mb-6">
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+        >difficulty level</label
+      >
+      <div class="relative text-gray-500 focus-within:text-gray-900">
+        <select
+          type="text"
+          formControlName="difficulty"
+          name="difficulty"
+          class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+          placeholder="Enter difficulty "
+        >
+        <option value=""> select difficulty level</option>
+        <option value="COMMON">Common</option>
+        <option value="RARE">Rare</option>
+        <option value="EPIC">Epic</option>
+        <option value="LEGENDARY">Legendary </option>
+
+      </select>
+        @if (difficulty?.invalid && (difficulty?.dirty || difficulty?.touched)) {
+        @if (difficulty?.errors?.['required']) {
+        <p class="mt-1 text-sm text-red-600">species type is required</p>
+        }  }
+      </div>
+    </div>
+
+
+    <div class="relative mb-6">
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+        >category</label
+      >
+      <div class="relative text-gray-500 focus-within:text-gray-900">
+        <select
+          name="category"
+          id="category"
+          class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+          formControlName="category"
+        >
+          <option value="" selected >choice category  </option>
+          <option value="SEA">Sea</option>
+          <option value="BIG_GAME">Big Game</option>
+          <option value="BIRD">Bird</option>
+
+        </select>
+        @if (category?.invalid && (category?.dirty || category?.touched)) {
+          @if  (category?.errors?.['required']) {
+            <p class="mt-1 text-sm text-red-600">category is required</p>
+          }
+        }
+      </div>
+    </div>
+
+    <div class="relative mb-6">
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+        >minimumWeight</label
+      >
+      <div class="relative text-gray-500 focus-within:text-gray-900">
+        <input
+          type="number"
+          formControlName="minimumWeight"
+          class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+          placeholder="Enter maxParticipants"
+        />
+        @if (minimumWeight?.invalid && (minimumWeight?.dirty ||
+        minimumWeight?.touched)) { @if (minimumWeight?.errors?.['required']) {
+        <p class="mt-1 text-sm text-red-600">minimumWeight is required</p>
+        } @if (minimumWeight?.errors?.['min']) {
+        <p class="mt-1 text-sm text-red-600">
+          min must be positive
+        </p>
+        } }
+      </div>
+    </div>
+
+    <div class="relative mb-6">
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+        >points</label
+      >
+      <div class="relative text-gray-500 focus-within:text-gray-900">
+        <input
+          type="number"
+          formControlName="points"
+          class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+          placeholder="Enter points"
+        />
+        @if (points?.invalid && (points?.dirty ||
+          points?.touched)) { @if (points?.errors?.['required']) {
+        <p class="mt-1 text-sm text-red-600">points is required</p>
+        } @if (points?.errors?.['min']) {
+        <p class="mt-1 text-sm text-red-600">
+          points must be positive
+        </p>
+        } }
+      </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="flex items-center justify-center">
+      <button
+        type="submit"
+        [disabled]="!speciesForm.valid || isLoading"
+        class="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+      >
+        {{ isLoading ? "Creating..." : "Create " }}
+      </button>
+    </div>
+  </form>
+</div>

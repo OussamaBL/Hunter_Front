@@ -1,0 +1,99 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dar:text-gray-400"
+  >
+    <caption
+      class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dar:text-white dar:bg-gray-800"
+    >
+      CONPETITIONS LIST
+
+      <span class="float-end"
+        ><a routerLink="/admin/competitions/create"
+          ><lord-icon
+            src="https://cdn.lordicon.com/pdsourfn.json"
+            trigger="hover"
+            stroke="bold"
+            colors="primary:#7166ee,secondary:#ffffff,tertiary:#7166ee"
+            style="width: 40px; height: 40px"
+          >
+          </lord-icon></a
+      ></span>
+    </caption>
+    <thead
+      class="text-xs text-gray-700 uppercase bg-gray-50 dar:bg-gray-700 dar:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">location</th>
+        <th scope="col" class="px-6 py-3">date</th>
+        <th scope="col" class="px-6 py-3">minParticipants</th>
+        <th scope="col" class="px-6 py-3">maxParticipants</th>
+        <th scope="col" class="px-6 py-3">participationCount</th>
+        <th scope="col" class="px-6 py-3">ACTION</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (isLoading) {
+      <tr>
+        <td colspan="5" class="px-6 py-4 text-center">
+          <div class="flex justify-center items-center">
+            <div
+              class="w-6 h-6 mr-2 border-2 border-t-2 border-gray-900 rounded-full animate-spin"
+            ></div>
+            <span class="text-gray-900">Loading...</span>
+          </div>
+        </td>
+      </tr>
+      }@else{ @for (competition of competitions; track $index) {
+      <tr class="bg-white border-b dar:bg-gray-800 dar:border-gray-700">
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dar:text-white"
+        >
+          {{ competition.location }}
+        </th>
+
+        <td class="px-6 py-4">
+          {{ competition.date | date:'longDate' }}
+        </td>
+
+        <td class="px-6 py-4">
+          {{ competition.participationCount }}
+        </td>
+
+        <td class="px-6 py-4">
+          {{ competition.minParticipants }}
+        </td>
+
+        <td class="px-6 py-4">
+          {{ competition.maxParticipants }}
+        </td>
+        <td class="px-6 py-4">
+          <button type="button" class="me-2">
+            <script src="https://cdn.lordicon.com/lordicon.js"></script>
+            <lord-icon
+              src="https://cdn.lordicon.com/zfzufhzk.json"
+              trigger="hover"
+              stroke="light"
+              state="hover-line"
+              style="width: 30px; height: 30px"
+            >
+            </lord-icon>
+          </button>
+          <button type="button" (click)="delete(competition.id)" class="">
+            <script src="https://cdn.lordicon.com/lordicon.js"></script>
+            <lord-icon
+              src="https://cdn.lordicon.com/xekbkxul.json"
+              trigger="hover"
+              stroke="light"
+              state="morph-trash-in"
+              colors="primary:#121331,secondary:#ff0000,tertiary:#646e78,quaternary:#ebe6ef"
+              style="width: 30px; height: 30px"
+            >
+            </lord-icon>
+          </button>
+        </td>
+      </tr>
+      } }
+    </tbody>
+  </table>
+</div>

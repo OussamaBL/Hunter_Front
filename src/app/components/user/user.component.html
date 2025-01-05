@@ -1,0 +1,77 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+      USERS LIST
+      <span class="float-end">
+        <a routerLink="/admin/users/create">
+          <lord-icon
+            src="https://cdn.lordicon.com/pdsourfn.json"
+            trigger="hover"
+            stroke="bold"
+            colors="primary:#7166ee,secondary:#ffffff,tertiary:#7166ee"
+            style="width:40px;height:40px">
+          </lord-icon>
+        </a>
+      </span>
+    </caption>
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <tr>
+      <th scope="col" class="px-6 py-3">CIN</th>
+      <th scope="col" class="px-6 py-3">NAME</th>
+      <th scope="col" class="px-6 py-3">EMAIL</th>
+      <th scope="col" class="px-6 py-3">ROLE</th>
+      <th scope="col" class="px-6 py-3">ACTION</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Loading State -->
+    <tr *ngIf="isLoading">
+      <td colspan="5" class="px-6 py-4 text-center">
+        <div class="flex justify-center items-center">
+          <div class="w-6 h-6 mr-2 border-2 border-t-2 border-gray-900 rounded-full animate-spin"></div>
+          <span class="text-gray-900">Loading...</span>
+        </div>
+      </td>
+    </tr>
+
+    <!-- User List -->
+    <tr *ngFor="let user of users; let i = index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+        {{ user.cin }}
+      </th>
+      <td class="px-6 py-4">
+        {{ user.firstName }} {{ user.lastName }}
+      </td>
+      <td class="px-6 py-4">
+        {{ user.email }}
+      </td>
+      <td class="px-6 py-4">
+          <span class="bg-pink-100 text-pink-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-pink-400 border border-pink-400">
+            {{ user.role }}
+          </span>
+      </td>
+      <td class="px-6 py-4">
+        <button type="button" class="me-2">
+          <lord-icon
+            src="https://cdn.lordicon.com/zfzufhzk.json"
+            trigger="hover"
+            stroke="light"
+            state="hover-line"
+            style="width:30px;height:30px">
+          </lord-icon>
+        </button>
+        <button type="button" (click)="delete(user.id)">
+          <lord-icon
+            src="https://cdn.lordicon.com/xekbkxul.json"
+            trigger="hover"
+            stroke="light"
+            state="morph-trash-in"
+            colors="primary:#121331,secondary:#ff0000,tertiary:#646e78,quaternary:#ebe6ef"
+            style="width:30px;height:30px">
+          </lord-icon>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

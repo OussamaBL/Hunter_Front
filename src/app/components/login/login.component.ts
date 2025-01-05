@@ -42,7 +42,7 @@ export class LoginComponent {
         if (response && response.token)
           localStorage.setItem('token', response.token);
 
-        /*this.router.navigate(['/dashboard']);*/
+        this.router.navigate(['/membre']);
         alert("success");
       },
       error:(error)=>{

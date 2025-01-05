@@ -1,0 +1,105 @@
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+  <h1 class="p-5 text-lg font-semibold text-center text-gray-900 bg-white">
+    Create New User Account
+  </h1>
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="w-2/3 mx-auto">
+    <!-- First Name -->
+    <div class="relative mb-6">
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium">
+        First Name
+      </label>
+      <input
+        type="text"
+        formControlName="firstName"
+        class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+        placeholder="Enter First Name"
+      />
+      <div *ngIf="userForm.get('firstName')?.invalid && (userForm.get('firstName')?.dirty || userForm.get('firstName')?.touched)">
+        <p *ngIf="userForm.get('firstName')?.errors?.['required']" class="mt-1 text-sm text-red-600">First name is required</p>
+        <p *ngIf="userForm.get('firstName')?.errors?.['minlength']" class="mt-1 text-sm text-red-600">First name must be at least 3 characters</p>
+      </div>
+    </div>
+
+    <!-- Last Name -->
+    <div class="relative mb-6">
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium">
+        Last Name
+      </label>
+      <input
+        type="text"
+        formControlName="lastName"
+        class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+        placeholder="Enter Last Name"
+      />
+      <div *ngIf="userForm.get('lastName')?.invalid && (userForm.get('lastName')?.dirty || userForm.get('lastName')?.touched)">
+        <p *ngIf="userForm.get('lastName')?.errors?.['required']" class="mt-1 text-sm text-red-600">Last name is required</p>
+        <p *ngIf="userForm.get('lastName')?.errors?.['minlength']" class="mt-1 text-sm text-red-600">Last name must be at least 3 characters</p>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="relative mb-6">
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium">
+        Email
+      </label>
+      <input
+        type="email"
+        formControlName="email"
+        class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+        placeholder="Enter Email"
+      />
+      <div *ngIf="userForm.get('email')?.invalid && (userForm.get('email')?.dirty || userForm.get('email')?.touched)">
+        <p *ngIf="userForm.get('email')?.errors?.['required']" class="mt-1 text-sm text-red-600">Email is required</p>
+        <p *ngIf="userForm.get('email')?.errors?.['email']" class="mt-1 text-sm text-red-600">Please enter a valid email</p>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="relative mb-6">
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium">
+        Password
+      </label>
+      <input
+        type="password"
+        formControlName="password"
+        class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+        placeholder="Enter Password"
+      />
+      <div *ngIf="userForm.get('password')?.invalid && (userForm.get('password')?.dirty || userForm.get('password')?.touched)">
+        <p *ngIf="userForm.get('password')?.errors?.['required']" class="mt-1 text-sm text-red-600">Password is required</p>
+        <p *ngIf="userForm.get('password')?.errors?.['minlength']" class="mt-1 text-sm text-red-600">Password must be at least 8 characters</p>
+      </div>
+    </div>
+
+    <!-- Role -->
+    <div class="relative mb-6">
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium">
+        Role
+      </label>
+      <select
+        formControlName="role"
+        class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+      >
+        <option value="" selected>Choice Role</option>
+        <option value="ADMIN">Admin</option>
+        <option value="JURY">Jury</option>
+        <option value="MEMBER">Member</option>
+      </select>
+      <div *ngIf="userForm.get('role')?.invalid && (userForm.get('role')?.dirty || userForm.get('role')?.touched)">
+        <p *ngIf="userForm.get('role')?.errors?.['required']" class="mt-1 text-sm text-red-600">Role is required</p>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex items-center justify-center">
+      <button
+        type="submit"
+        [disabled]="!userForm.valid || isLoading"
+        class="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
+      >
+        {{ isLoading ? "Creating..." : "Create Account" }}
+      </button>
+    </div>
+  </form>
+</div>
