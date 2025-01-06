@@ -1,175 +1,144 @@
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
   <h1 class="p-5 text-lg font-semibold text-center text-gray-900 bg-white">
-    create new Competition
+    Create New Competition
   </h1>
 
   <form [formGroup]="competitionForm" (ngSubmit)="onSubmit()" class="w-2/3 mx-auto">
+    <!-- Species Type -->
     <div class="relative mb-6">
-      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
-        >species type</label
-      >
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium">
+        Species Type
+      </label>
       <div class="relative text-gray-500 focus-within:text-gray-900">
         <select
-          type="text"
           formControlName="speciesType"
           name="speciesType"
           class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
-          placeholder="Enter species type"
         >
-        <option value=""> select species type</option>
-        <option value="BIRD">Bird</option>
-        <option value="SEA">Sea</option>
-        <option value="BIG_GAME">Big Game</option>
-
-      </select>
-        @if (speciesType?.invalid && (speciesType?.dirty || speciesType?.touched)) {
-        @if (speciesType?.errors?.['required']) {
-        <p class="mt-1 text-sm text-red-600">species type is required</p>
-        }  }
+          <option value="">Select species type</option>
+          <option value="BIRD">Bird</option>
+          <option value="SEA">Sea</option>
+          <option value="BIG_GAME">Big Game</option>
+        </select>
+        <p *ngIf="competitionForm.get('speciesType')?.invalid && competitionForm.get('speciesType')?.touched" class="mt-1 text-sm text-red-600">
+          Species type is required
+        </p>
       </div>
     </div>
 
+    <!-- Date -->
     <div class="relative mb-6">
-      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
-        >date</label
-      >
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium">
+        Date
+      </label>
       <div class="relative text-gray-500 focus-within:text-gray-900">
         <input
           type="datetime-local"
           formControlName="date"
           class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
-          placeholder="Enter date"
         />
-        @if (date?.invalid && (date?.dirty || date?.touched)) { @if
-        (date?.errors?.['required']) {
-        <p class="mt-1 text-sm text-red-600">date is required</p>
-        } @if (date?.errors?.['minlength']) {
-        <p class="mt-1 text-sm text-red-600">
-          species type must be at least 3 characters
+        <p *ngIf="competitionForm.get('date')?.invalid && competitionForm.get('date')?.touched" class="mt-1 text-sm text-red-600">
+          Date is required
         </p>
-        } }
       </div>
     </div>
 
+    <!-- Code -->
     <div class="relative mb-6">
-      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
-        >Code</label
-      >
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium">
+        Code
+      </label>
       <div class="relative text-gray-500 focus-within:text-gray-900">
         <input
-          type="code"
+          type="text"
           formControlName="code"
           class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
-          placeholder="Enter code"
         />
-        @if (code?.invalid && (code?.dirty || code?.touched)) { @if
-        (code?.errors?.['required']) {
-        <p class="mt-1 text-sm text-red-600">Code is required</p>
-        @if (code?.errors?.['minlength']) {
-          <p class="mt-1 text-sm text-red-600">
-            openRegistration must be at least 8 characters
-          </p>
-          } }
-        }
+        <p *ngIf="competitionForm.get('code')?.invalid && competitionForm.get('code')?.touched" class="mt-1 text-sm text-red-600">
+          Code is required
+        </p>
       </div>
     </div>
 
+    <!-- Location -->
     <div class="relative mb-6">
-      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
-        >location</label
-      >
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium">
+        Location
+      </label>
       <div class="relative text-gray-500 focus-within:text-gray-900">
         <input
           type="text"
           formControlName="location"
           class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
-          placeholder="Enter location"
         />
-        @if (location?.invalid && (location?.dirty || location?.touched)) { @if
-        (location?.errors?.['required']) {
-        <p class="mt-1 text-sm text-red-600">location is required</p>
-        } @if (location?.errors?.['minlength']) {
-        <p class="mt-1 text-sm text-red-600">
-          openRegistration must be at least 8 characters
+        <p *ngIf="competitionForm.get('location')?.invalid && competitionForm.get('location')?.touched" class="mt-1 text-sm text-red-600">
+          Location is required
         </p>
-        } }
-      </div>
-    </div>
-    <div class="relative mb-6">
-      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
-        >openRegistration</label
-      >
-      <div class="relative text-gray-500 focus-within:text-gray-900">
-        <select
-          name="openRegistration"
-          id="openRegistration"
-          class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
-          formControlName="openRegistration"
-        >
-          <option value="" selected >choice registration  </option>
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </select>
-        @if (openRegistration?.invalid && (openRegistration?.dirty || openRegistration?.touched)) {
-          @if  (openRegistration?.errors?.['required']) {
-            <p class="mt-1 text-sm text-red-600">openRegistration is required</p>
-          }
-        }
       </div>
     </div>
 
+    <!-- Open Registration -->
     <div class="relative mb-6">
-      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
-        >minParticipants</label
-      >
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium">
+        Open Registration
+      </label>
+      <div class="relative text-gray-500 focus-within:text-gray-900">
+        <select
+          formControlName="openRegistration"
+          class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+        >
+          <option value="">Choose registration</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+        <p *ngIf="competitionForm.get('openRegistration')?.invalid && competitionForm.get('openRegistration')?.touched" class="mt-1 text-sm text-red-600">
+          Open registration is required
+        </p>
+      </div>
+    </div>
+
+    <!-- Min Participants -->
+    <div class="relative mb-6">
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium">
+        Min Participants
+      </label>
       <div class="relative text-gray-500 focus-within:text-gray-900">
         <input
           type="number"
           formControlName="minParticipants"
           class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
-          placeholder="Enter maxParticipants"
         />
-        @if (minParticipants?.invalid && (minParticipants?.dirty ||
-        minParticipants?.touched)) { @if (minParticipants?.errors?.['required']) {
-        <p class="mt-1 text-sm text-red-600">minParticipants is required</p>
-        } @if (minParticipants?.errors?.['min']) {
-        <p class="mt-1 text-sm text-red-600">
-          min must be positive
+        <p *ngIf="competitionForm.get('minParticipants')?.invalid && competitionForm.get('minParticipants')?.touched" class="mt-1 text-sm text-red-600">
+          Min participants is required
         </p>
-        } }
       </div>
     </div>
 
+    <!-- Max Participants -->
     <div class="relative mb-6">
-      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
-        >maxParticipants </label
-      >
+      <label class="flex items-center mb-2 text-gray-600 text-sm font-medium">
+        Max Participants
+      </label>
       <div class="relative text-gray-500 focus-within:text-gray-900">
         <input
           type="number"
           formControlName="maxParticipants"
           class="block w-full h-11 px-4 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
-          placeholder="Enter maxParticipants "
         />
-        @if (maxParticipants?.invalid && (maxParticipants?.dirty || maxParticipants?.touched)) { @if
-        (maxParticipants?.errors?.['required']) {
-        <p class="mt-1 text-sm text-red-600">maxParticipants  is required</p>
-        } @if (maxParticipants?.errors?.['serverError']) {
-        <p class="mt-1 text-sm text-red-600">
-          {{ maxParticipants?.errors?.['serverError'] }}
+        <p *ngIf="competitionForm.get('maxParticipants')?.invalid && competitionForm.get('maxParticipants')?.touched" class="mt-1 text-sm text-red-600">
+          Max participants is required
         </p>
-        } }
       </div>
     </div>
 
-
+    <!-- Submit Button -->
     <div class="flex items-center justify-center">
       <button
         type="submit"
         [disabled]="!competitionForm.valid || isLoading"
         class="w-52 h-12 shadow-sm rounded-full bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 text-white text-base font-semibold leading-7"
       >
-        {{ isLoading ? "Creating..." : "Create " }}
+        {{ isLoading ? "Creating..." : "Create" }}
       </button>
     </div>
   </form>

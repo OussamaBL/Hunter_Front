@@ -1,12 +1,8 @@
-import { ApiService }                                              from '../../../services/api.service';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit }               from '@angular/core';
-import { Router }                                                  from '@angular/router';
-import Swal                                                        from 'sweetalert2';
+import { ApiService } from '../../../services/api.service';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
-
-
-
 
 export interface Competition {
   id: string;
@@ -21,6 +17,7 @@ export interface Competition {
 @Component({
   selector: 'app-competition-create',
   templateUrl: './competitionCreate.component.html',
+  standalone: true,
   imports: [ReactiveFormsModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
@@ -43,7 +40,6 @@ export class CompetitionCreateComponent  {
       maxParticipants: ['', [Validators.required]],
 
     });
-
   }
 
   get speciesType() { return this.competitionForm.get('speciesType'); }
@@ -73,12 +69,12 @@ export class CompetitionCreateComponent  {
         },
         error: (err) => {
 
-          if (err?.error?.maxGreaterThanMin) {
+          /*if (err?.error?.maxGreaterThanMin) {
             this.competitionForm.get('maxParticipants')?.setErrors({
               serverError: err.error.maxGreaterThanMin
             });
-          }
-          console.error('Error creating competition:', err.error.maxGreaterThanMin);
+          }*/
+          console.error('Error creating competition:', err);
         }
       });
     } else {
