@@ -17,6 +17,7 @@ export interface Species {
   selector: 'app-species',
   templateUrl: './species.component.html',
   styleUrls: ['./species.component.css'],
+  standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports : [RouterModule]
 })
