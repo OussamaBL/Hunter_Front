@@ -1,12 +1,8 @@
-import { ApiService }                                              from '../../../services/api.service';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit }               from '@angular/core';
-import { Router }                                                  from '@angular/router';
-import Swal                                                        from 'sweetalert2';
+import { ApiService } from '../../../services/api.service';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-
-
-
-
 
 export interface Species {
   id: string;
@@ -22,6 +18,7 @@ export interface Species {
   selector: 'app-species-create',
   templateUrl: './speciesCreate.component.html',
   imports: [ReactiveFormsModule],
+  standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class SpeciesCreateComponent {
@@ -66,7 +63,7 @@ export class SpeciesCreateComponent {
             icon: "success"
           });
         },
-        error: (err) => {
+        error: (err) => { ;
           console.error('Error creating species:', err);
         }
       });
