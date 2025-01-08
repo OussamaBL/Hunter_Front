@@ -5,8 +5,8 @@ import { Router, RouterModule } from '@angular/router';
   selector: 'app-member-dashboard',
   imports: [RouterModule],
   templateUrl: './memberDashboard.component.html',
-  styleUrl: './memberDashboard.component.css'
-
+  styleUrl: './memberDashboard.component.css',
+  standalone:true
 })
 export class MemberDashboardComponent {
 
@@ -18,7 +18,7 @@ export class MemberDashboardComponent {
 
 
   logOut() {
-    localStorage.removeItem('auth-token');
+    localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
 }

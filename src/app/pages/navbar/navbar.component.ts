@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
   selector: 'app-navbar',
   imports: [],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrl: './navbar.component.css',
+  standalone:true,
 })
 export class NavbarComponent  implements OnInit {
 
@@ -14,7 +15,7 @@ export class NavbarComponent  implements OnInit {
 
 
   ngOnInit() {
-    const token = localStorage.getItem('auth-token');
+    const token = localStorage.getItem('token');
 
     if (token) {
       const decodedData = this.decodeToken(token);

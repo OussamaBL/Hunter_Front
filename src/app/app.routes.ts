@@ -10,6 +10,8 @@ import {CompetitionCreateComponent} from "./components/competition/create/compet
 import {SpeciesComponent} from "./components/species/species.component";
 import {SpeciesCreateComponent} from "./components/species/create/speciesCreate.component";
 import {roleGuard} from "./guards/role.guard";
+import {MemberLayoutComponent} from "./pages/memberLayout/memberLayout.component";
+import {MemberCompetitionComponent} from "./components/member/competition/memberCompetition.component";
 export const routes: Routes = [
   { path: '/', component: LoginComponent },
   {
@@ -48,6 +50,22 @@ export const routes: Routes = [
     ],
     canActivate: [authGuard, roleGuard],
     data: { role: 'ADMIN' }
-  }
+  },
+  {
+    path: 'member',
+    component: MemberLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: StatistiquesComponent,
+      },
+      {
+        path: 'competitions',
+        component: MemberCompetitionComponent,
+      }
+    ],
+    canActivate: [authGuard, roleGuard],
+    data: { role: 'MEMBER' }
+  },
 
 ];
