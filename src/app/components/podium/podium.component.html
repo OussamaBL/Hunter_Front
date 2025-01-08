@@ -1,0 +1,70 @@
+<div class=" px-8 flex items-center justify-center">
+  <div class="max-w-3xl w-full mx-auto text-center">
+    <h1 class="text-3xl font-bold text-gray-800 mb-8 flex items-center justify-center gap-4">
+      <span class="text-5xl">🏆</span>
+      <span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700">
+        Champions Podium
+      </span>
+      <span class="text-5xl">🏆</span>
+    </h1>
+
+    <div class="flex justify-center items-end space-x-8 mb-4">
+      <!-- Second Place -->
+      <div class="flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
+        <div class="relative mb-4">
+          <div class="w-28 h-28 bg-gradient-to-br from-gray-200 to-gray-300 rounded-full shadow-lg flex items-center justify-center">
+            <div class="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center">
+              <span class="text-6xl">🥈</span>
+            </div>
+          </div>
+          <p class="mt-2 font-bold text-gray-700 text-xl">{{podium[1]?.firstName}} {{podium[1]?.lastName}}</p>
+          <p class="text-gray-600">Score:{{podium[1]?.score}}</p>
+        </div>
+        <div class="w-24 h-40 bg-gradient-to-b from-gray-300 to-gray-400 rounded-t-xl shadow-lg flex flex-col justify-end">
+          <div class="bg-gray-600/10 h-full w-full rounded-t-xl backdrop-blur-sm flex items-center justify-center">
+            <span class="text-white font-bold text-xl rotate-180" style="writing-mode: vertical-rl;">2nd Place</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- First Place -->
+      <div class="flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
+        <div class="relative mb-4">
+          <div class="w-32 h-32 bg-gradient-to-br from-yellow-300 to-yellow-500 rounded-full shadow-lg flex items-center justify-center">
+            <div class="w-28 h-28 bg-gradient-to-br from-yellow-200 to-yellow-400 rounded-full flex items-center justify-center">
+              <span class="text-7xl">🥇</span>
+            </div>
+          </div>
+          <p class="mt-2 font-bold text-gray-700 text-xl">{{podium[0]?.firstName}} {{podium[0]?.lastName}}</p>
+          <p class="text-gray-600">Score:{{podium[0]?.score}}</p>
+        </div>
+        <div class="w-28 h-48 bg-gradient-to-b from-yellow-400 to-yellow-600 rounded-t-xl shadow-lg flex flex-col justify-end">
+          <div class="bg-yellow-600/10 h-full w-full rounded-t-xl backdrop-blur-sm flex items-center justify-center">
+            <span class="text-white font-bold text-xl rotate-180" style="writing-mode: vertical-rl;">Champion</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Third Place -->
+      <div class="flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
+        <div class="relative mb-4">
+          <div class="w-28 h-28 bg-gradient-to-br from-amber-500 to-amber-700 rounded-full shadow-lg flex items-center justify-center">
+            <div class="w-24 h-24 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center">
+              <span class="text-6xl">🥉</span>
+            </div>
+          </div>
+          <p class="mt-2 font-bold text-gray-700 text-xl">{{podium[2]?.firstName}} {{podium[2]?.lastName}}</p>
+          <p class="text-gray-600">Score:{{podium[2]?.score}}</p>
+        </div>
+        <div class="w-24 h-32 bg-gradient-to-b from-amber-600 to-amber-800 rounded-t-xl shadow-lg flex flex-col justify-end">
+          <div class="bg-amber-800/10 h-full w-full rounded-t-xl backdrop-blur-sm flex items-center justify-center">
+            <span class="text-white font-bold text-xl rotate-180" style="writing-mode: vertical-rl;">3rd Place</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Base Platform -->
+    <div class="h-6 bg-gradient-to-r from-gray-700 via-gray-800 to-gray-700 rounded-t-lg shadow-xl mx-8"></div>
+  </div>
+</div>

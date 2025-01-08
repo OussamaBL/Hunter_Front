@@ -12,6 +12,7 @@ import {SpeciesCreateComponent} from "./components/species/create/speciesCreate.
 import {roleGuard} from "./guards/role.guard";
 import {MemberLayoutComponent} from "./pages/memberLayout/memberLayout.component";
 import {MemberCompetitionComponent} from "./components/member/competition/memberCompetition.component";
+import {PodiumComponent} from "./components/podium/podium.component";
 export const routes: Routes = [
   { path: '/', component: LoginComponent },
   {
@@ -62,7 +63,11 @@ export const routes: Routes = [
       {
         path: 'competitions',
         component: MemberCompetitionComponent,
-      }
+      },
+      {
+        path: 'competitions/:id',
+        component: PodiumComponent,
+      },
     ],
     canActivate: [authGuard, roleGuard],
     data: { role: 'MEMBER' }
