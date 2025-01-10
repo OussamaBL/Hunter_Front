@@ -1,25 +1,29 @@
-import { HttpInterceptorFn } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
-@Injectable()
-export class AuthInterceptor implements HttpInterceptor {
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // Retrieve the token from localStorage
-    const token = localStorage.getItem('token');
 
-    // Clone the request to add the Authorization header if the token exists
-    if (token) {
-      const clonedReq = req.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      return next.handle(clonedReq);
-    }
+import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
-    // Pass the original request if no token exists
-    return next.handle(req);
+export const authInterceptor: HttpInterceptorFn = (req, next) => {
+  const router = inject(Router);
+  const token = localStorage.getItem('token');
+
+  if (token) {
+    req = req.clone({
+      setHeaders: {
+        Authorization: `Bearer ${token}`
+      }
+    });
   }
-}
 
+  return next(req).pipe(
+    catchError((error: HttpErrorResponse) => {
+      if (error.status === 401 || error.status === 403) {
+        localStorage.removeItem('token');
+        router.navigate(['/']);
+      }
+      return throwError(() => error);
+    })
+  );
+};

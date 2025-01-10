@@ -1,5 +1,6 @@
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg" style="padding-top: 20px">
+  <a routerLink="../users/create" class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4">Create user</a>
+  <table style="margin-top: 10px" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
     <caption class="p-5 text-lg font-semibold text-left rtl:text-right text-gray-900 bg-white dark:text-white dark:bg-gray-800">
       USERS LIST
       <span class="float-end">
@@ -60,15 +61,8 @@
             style="width:30px;height:30px">
           </lord-icon>
         </button>
-        <button type="button" (click)="delete(user.id)">
-          <lord-icon
-            src="https://cdn.lordicon.com/xekbkxul.json"
-            trigger="hover"
-            stroke="light"
-            state="morph-trash-in"
-            colors="primary:#121331,secondary:#ff0000,tertiary:#646e78,quaternary:#ebe6ef"
-            style="width:30px;height:30px">
-          </lord-icon>
+        <button type="button" class="bg-red-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" (click)="delete(user.id)">
+         Delete
         </button>
       </td>
     </tr>

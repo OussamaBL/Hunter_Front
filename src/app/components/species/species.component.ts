@@ -3,6 +3,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
+import {NgForOf, NgIf} from "@angular/common";
 
 export interface Species {
   id: string;
@@ -19,7 +20,7 @@ export interface Species {
   styleUrls: ['./species.component.css'],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports : [RouterModule]
+  imports: [RouterModule, NgIf, NgForOf]
 })
 export class SpeciesComponent implements OnInit {
 

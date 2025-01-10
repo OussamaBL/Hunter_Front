@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Router } from 'express';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
+import {NgForOf, NgIf} from "@angular/common";
 
 export interface User {
   id: string;
@@ -21,7 +22,7 @@ export interface User {
   standalone: true,
   styleUrls: ['./user.component.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports : [RouterModule]
+  imports: [RouterModule, NgIf, NgForOf]
 })
 export class UserComponent implements OnInit {
 
@@ -39,7 +40,14 @@ export class UserComponent implements OnInit {
   ngOnInit() {
     this.getUsers().subscribe(users => {
       this.users = users;
-      console.log(users);
+      if(users.length<0){
+        Swal.fire({
+          icon: 'error',
+          title: 'No data',
+          text: 'Users not found',
+          confirmButtonText: 'Try Again',
+        });
+      }
       setTimeout(() => {
         if (users.length >0) {
           this.isLoading = false;

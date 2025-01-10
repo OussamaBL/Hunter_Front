@@ -16,7 +16,7 @@ export interface CustomJwtPayload extends JwtPayload {
   deps: [HttpClient]  // Add this line
 })
 export class LoginService {
-  private apiUrl = 'https://localhost:8443/api/users/Login';
+  private apiUrl = 'http://localhost:8080/api/auth/login';
   constructor(private http:HttpClient) { }
 
   login(credentials: { email: string, password: string }): Observable<LoginResponse> {
@@ -24,7 +24,6 @@ export class LoginService {
       .pipe(
         catchError(error => {
           console.error('Login error:', error);
-          alert('Login error:'+ error);
           throw error;
         })
       );

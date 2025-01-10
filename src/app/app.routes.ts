@@ -14,7 +14,7 @@ import {MemberLayoutComponent} from "./pages/memberLayout/memberLayout.component
 import {MemberCompetitionComponent} from "./components/member/competition/memberCompetition.component";
 import {PodiumComponent} from "./components/podium/podium.component";
 export const routes: Routes = [
-  { path: '/', component: LoginComponent },
+  { path: '', component: LoginComponent },
   {
     path: 'admin',
     component: AdminLayoutComponent,

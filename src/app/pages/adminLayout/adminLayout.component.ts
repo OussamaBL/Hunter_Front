@@ -7,7 +7,8 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-admin-layout',
   imports: [ AdminDashboardComponent , NavbarComponent , RouterOutlet],
   templateUrl: './adminLayout.component.html',
-  styleUrl: './adminLayout.component.css'
+  styleUrl: './adminLayout.component.css',
+  standalone:true
 })
 export class AdminLayoutComponent {
 

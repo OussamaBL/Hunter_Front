@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
+import {NgIf} from "@angular/common";
 
 export interface User {
   id: string;
@@ -18,7 +19,7 @@ export interface User {
 @Component({
   selector: 'app-user-create',
   templateUrl: './userCreate.component.html',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgIf],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
@@ -74,7 +75,14 @@ export class UserCreateComponent implements OnInit {
             icon: "success"
           });
         },
-        error: (err) => console.error('Error creating user:', err),
+        error: (err) => {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'error : '+err,
+            confirmButtonText: 'Try Again',
+          });
+        },
       });
     } else {
       console.error('Form is invalid');

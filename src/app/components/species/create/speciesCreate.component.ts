@@ -3,6 +3,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {NgIf} from "@angular/common";
 
 export interface Species {
   id: string;
@@ -17,7 +18,7 @@ export interface Species {
 @Component({
   selector: 'app-species-create',
   templateUrl: './speciesCreate.component.html',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgIf],
   standalone: true,
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -6,6 +6,7 @@ import {response} from "express";
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {NgIf} from "@angular/common";
 import {HttpClientModule} from "@angular/common/http";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-login',
@@ -33,22 +34,41 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
-    if (this.loginForm.valid)
-      console.log('Form Submitted', this.loginForm.value);
+    if (this.loginForm.valid) {
+
+    console.log('Form Submitted', this.loginForm.value);
 
     const credentials = this.loginForm.value;
     this.loginService.login(credentials).subscribe({
-      next:(response)=>{
+      next: (response) => {
         if (response && response.token)
           localStorage.setItem('token', response.token);
-
-        this.router.navigate(['/membre']);
-        alert("success");
+          Swal.fire({
+            icon: 'success',
+            title: 'Login Successful',
+            text: 'Welcome to the application!',
+            confirmButtonText: 'OK',
+          }).then(() => {
+            this.router.navigate(['/member']);
+          });
       },
-      error:(error)=>{
-        alert("erooooooooooor"+error.message);
-        alert("error:"+error.message);
+      error: (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Login Failed',
+          text: error.error?.message || 'An unexpected error occurred.',
+          confirmButtonText: 'Try Again',
+        });
       }
     })
+  }
+    else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Invalid Form',
+        text: 'Please fill in all required fields correctly.',
+        confirmButtonText: 'OK',
+      });
+    }
   }
 }

@@ -74,7 +74,14 @@ export class CompetitionComponent implements OnInit {
         this.currentPage = response.number;
 
         console.log(response.content);
-
+        if(response.content){
+          Swal.fire({
+            icon: 'error',
+            title: 'No data',
+            text: 'Competition not found',
+            confirmButtonText: 'Try Again',
+          });
+        }
         setTimeout(() => {
           if (response.content.length > 0) {
             this.isLoading = false;

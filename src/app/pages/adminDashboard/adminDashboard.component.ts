@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 @Component({
   selector: 'app-admin-dashboard',
   imports: [RouterModule],
+  standalone:true,
   templateUrl: './adminDashboard.component.html',
   styleUrl: './adminDashboard.component.css'
 
@@ -18,7 +19,7 @@ export class AdminDashboardComponent {
 
 
   logOut() {
-    localStorage.removeItem('auth-token');
-    this.router.navigate(['/login']);
+    localStorage.removeItem('token');
+    this.router.navigate(['/']);
   }
 }

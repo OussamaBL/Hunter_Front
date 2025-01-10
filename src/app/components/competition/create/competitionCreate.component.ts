@@ -3,6 +3,7 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {NgIf} from "@angular/common";
 
 export interface Competition {
   id: string;
@@ -18,7 +19,7 @@ export interface Competition {
   selector: 'app-competition-create',
   templateUrl: './competitionCreate.component.html',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgIf],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class CompetitionCreateComponent  {
@@ -68,13 +69,12 @@ export class CompetitionCreateComponent  {
           });
         },
         error: (err) => {
-
-          /*if (err?.error?.maxGreaterThanMin) {
-            this.competitionForm.get('maxParticipants')?.setErrors({
-              serverError: err.error.maxGreaterThanMin
-            });
-          }*/
-          console.error('Error creating competition:', err);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'error : '+err,
+            confirmButtonText: 'Try Again',
+          });
         }
       });
     } else {
