@@ -39,6 +39,14 @@ export class SpeciesComponent implements OnInit {
     this.getspecies().subscribe(species => {
       this.species = species;
       console.log(species);
+      if(species.length<0){
+        Swal.fire({
+          icon: 'error',
+          title: 'No data',
+          text: 'Species not found',
+          confirmButtonText: 'Try Again',
+        });
+      }
       setTimeout(() => {
         if (species.length >0) {
           this.isLoading = false;

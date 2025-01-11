@@ -52,7 +52,7 @@ export interface PageableResponse {
   imports: [RouterModule, CommonModule]
 })
 export class CompetitionComponent implements OnInit {
-  isLoading = false;
+  isLoading = true;
   competitions: Competition[] = [];
   currentPage = 0;
   totalPages = 0;
@@ -74,7 +74,7 @@ export class CompetitionComponent implements OnInit {
         this.currentPage = response.number;
 
         console.log(response.content);
-        if(response.content){
+        if(!response.content){
           Swal.fire({
             icon: 'error',
             title: 'No data',
